@@ -1,0 +1,1 @@
+export const pxToEm = (num, base = 14) => (num/base).toFixed(4) + 'em'

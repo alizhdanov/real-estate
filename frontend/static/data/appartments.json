@@ -1,0 +1,42 @@
+[
+    {
+        "id": 1,
+        "slug": "flat-1",
+        "title": "Квартира с видом на море",
+        "area": 65,
+        "rooms": 3,
+        "type": "rent",
+        "price": "2500",
+        "fullAdress": "г.Одесса, ул.Клёвая, 77"
+    },
+    {
+        "id": 2,
+        "slug": "flat-2",
+        "title": "Квартира с видом на океан",
+        "area": 40,
+        "rooms": 1,
+        "type": "rent",
+        "price": "7800",
+        "fullAdress": "г.Одесса, ул.Клёвая, 77"
+    },
+    {
+        "id": 3,
+        "slug": "flat-3",
+        "title": "Квартира с видом на море",
+        "area": 40,
+        "rooms": 3,
+        "type": "rent",
+        "price": "2500",
+        "fullAdress": "г.Одесса, ул.Клёвая, 77"
+    },
+    {
+        "id": 4,
+        "slug": "flat-4",
+        "title": "Квартира с видом на море",
+        "area": 40,
+        "rooms": 1,
+        "type": "rent",
+        "price": "2500",
+        "fullAdress": "г.Одесса, ул.Клёвая, 77"
+    }
+]
