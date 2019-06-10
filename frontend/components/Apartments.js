@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
+import { ApolloProvider } from 'react-apollo';
+
 import Section from './Section';
 import AppartmentCard from './AppartmentCard';
 

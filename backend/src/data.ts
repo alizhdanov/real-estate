@@ -9,9 +9,9 @@ export const db = knex({
     user: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
   },
-  // migrations: {
-  //   tableName: 'migrations',
-  // },
+  migrations: {
+    tableName: 'migrations',
+  },
   debug: true,
 })
 
@@ -38,6 +38,8 @@ const users: UserModel[] = [
 export interface Data {
   users: UserModel[]
 }
+
+export type Knex = knex
 
 export const data = {
   users,

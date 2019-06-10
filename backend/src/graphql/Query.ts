@@ -1,4 +1,4 @@
-import { queryType, stringArg } from 'yoga'
+import { queryType, stringArg, intArg } from 'yoga'
 
 /*
 type Query {
@@ -17,19 +17,48 @@ export const Query = queryType({
 
     t.list.field('users', {
       type: 'User',
-      resolve: (root, args, ctx) => {
-        return ctx.data.users
+      resolve: async (root, args, ctx) => {
+        const users = await ctx.db.table('users').select()
+
+        return users
       },
     })
 
-    t.string('hell', {
-      resolve: (_, args, { db }) => {
-        console.log('should')
-        db.table('test').then(r => {
-          console.log({ r })
-        })
+    t.list.field('estates', {
+      type: 'Estate',
+      args: {
+        limit: intArg({ default: 5 }),
+        offset: intArg({ default: 0 }),
+      },
+      resolve: async (root, { limit, offset }, ctx) => {
+        const estates = await ctx.db
+          .table('estate')
+          .offset(offset)
+          .limit(limit)
+          .select()
 
-        return 'test'
+        return estates
+      },
+    })
+
+    t.list.field('estatesOffsetBased', {
+      type: 'Estate',
+      args: {
+        first: intArg({ default: 5 }),
+        last: intArg({ default: 5 }),
+        before: intArg({ default: 0 }),
+        after: intArg({ default: 0 }),
+      },
+      resolve: async (root, { first, last, before, after }, ctx) => {
+        const where = after ? ['>', after] : ['<', before]
+
+        const estates = await ctx.db
+          .table('estate')
+          .where('id', ...where)
+          .limit(after ? first : last)
+          .select()
+
+        return estates
       },
     })
   },

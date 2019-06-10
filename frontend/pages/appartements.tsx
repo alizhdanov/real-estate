@@ -50,6 +50,7 @@ const Table = styled.table`
 `;
 
 export default class extends Component {
+  // @ts-ignore
   static getInitialProps({ query: { slug } }) {
     return {
       postSlug: slug,

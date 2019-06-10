@@ -17,10 +17,19 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
+  Estate: { // root type
+    description: string; // String!
+    id: string; // ID!
+    title: string; // String!
+    user_id: number; // Int!
+  }
+  Mutation: {};
   Query: {};
   User: { // root type
+    email: string; // String!
     id: string; // ID!
     name: string; // String!
+    surname: string; // String!
   }
   String: string;
   Int: number;
@@ -33,19 +42,60 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 }
 
 export interface NexusGenFieldTypes {
+  Estate: { // field return type
+    description: string; // String!
+    id: string; // ID!
+    title: string; // String!
+    user: NexusGenRootTypes['User']; // User!
+    user_id: number; // Int!
+  }
+  Mutation: { // field return type
+    createUser: NexusGenRootTypes['User']; // User!
+    deleteUser: NexusGenRootTypes['User']; // User!
+    updateUser: NexusGenRootTypes['User']; // User!
+  }
   Query: { // field return type
-    hell: string; // String!
+    estates: NexusGenRootTypes['Estate'][]; // [Estate!]!
+    estatesOffsetBased: NexusGenRootTypes['Estate'][]; // [Estate!]!
     hello: string; // String!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
+    email: string; // String!
     id: string; // ID!
     name: string; // String!
+    surname: string; // String!
   }
 }
 
 export interface NexusGenArgTypes {
+  Mutation: {
+    createUser: { // args
+      email: string; // String!
+      name: string; // String!
+      surname: string; // String!
+    }
+    deleteUser: { // args
+      id: string; // String!
+    }
+    updateUser: { // args
+      email?: string | null; // String
+      id: string; // String!
+      name?: string | null; // String
+      surname?: string | null; // String
+    }
+  }
   Query: {
+    estates: { // args
+      limit: number; // Int!
+      offset: number; // Int!
+    }
+    estatesOffsetBased: { // args
+      after: number; // Int!
+      before: number; // Int!
+      first: number; // Int!
+      last: number; // Int!
+    }
     hello: { // args
       name: string; // String!
     }
@@ -57,7 +107,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Query" | "User";
+export type NexusGenObjectNames = "Estate" | "Mutation" | "Query" | "User";
 
 export type NexusGenInputNames = never;
 

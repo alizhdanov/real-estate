@@ -1,8 +1,8 @@
-import { data, Data, db } from './data'
+import { data, Data, db, Knex } from './data'
 
 export interface Context {
   data: Data
-  db: object
+  db: Knex
 }
 
 export default () => ({

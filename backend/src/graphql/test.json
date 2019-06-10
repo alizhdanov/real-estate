@@ -1,0 +1,150 @@
+{
+  "fieldName": "users",
+  "fieldNodes": [
+    {
+      "kind": "Field",
+      "name": {
+        "kind": "Name",
+        "value": "users",
+        "loc": { "start": 4, "end": 9 }
+      },
+      "arguments": [],
+      "directives": [],
+      "selectionSet": {
+        "kind": "SelectionSet",
+        "selections": [
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "id",
+              "loc": { "start": 16, "end": 18 }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": { "start": 16, "end": 18 }
+          },
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "name",
+              "loc": { "start": 23, "end": 27 }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": { "start": 23, "end": 27 }
+          },
+          {
+            "kind": "Field",
+            "name": {
+              "kind": "Name",
+              "value": "surname",
+              "loc": { "start": 32, "end": 39 }
+            },
+            "arguments": [],
+            "directives": [],
+            "loc": { "start": 32, "end": 39 }
+          }
+        ],
+        "loc": { "start": 10, "end": 43 }
+      },
+      "loc": { "start": 4, "end": 43 }
+    }
+  ],
+  "returnType": "[User!]!",
+  "parentType": "Query",
+  "path": { "key": "users" },
+  "schema": {
+    "__validationErrors": [],
+    "__allowedLegacyNames": [],
+    "_queryType": "Query",
+    "_mutationType": "Mutation",
+    "_directives": ["@include", "@skip", "@deprecated"],
+    "_typeMap": {
+      "Query": "Query",
+      "String": "String",
+      "User": "User",
+      "ID": "ID",
+      "Mutation": "Mutation",
+      "__Schema": "__Schema",
+      "__Type": "__Type",
+      "__TypeKind": "__TypeKind",
+      "Boolean": "Boolean",
+      "__Field": "__Field",
+      "__InputValue": "__InputValue",
+      "__EnumValue": "__EnumValue",
+      "__Directive": "__Directive",
+      "__DirectiveLocation": "__DirectiveLocation"
+    },
+    "_possibleTypeMap": {},
+    "_implementations": {},
+    "_extensionsEnabled": true
+  },
+  "fragments": {},
+  "operation": {
+    "kind": "OperationDefinition",
+    "operation": "query",
+    "variableDefinitions": [],
+    "directives": [],
+    "selectionSet": {
+      "kind": "SelectionSet",
+      "selections": [
+        {
+          "kind": "Field",
+          "name": {
+            "kind": "Name",
+            "value": "users",
+            "loc": { "start": 4, "end": 9 }
+          },
+          "arguments": [],
+          "directives": [],
+          "selectionSet": {
+            "kind": "SelectionSet",
+            "selections": [
+              {
+                "kind": "Field",
+                "name": {
+                  "kind": "Name",
+                  "value": "id",
+                  "loc": { "start": 16, "end": 18 }
+                },
+                "arguments": [],
+                "directives": [],
+                "loc": { "start": 16, "end": 18 }
+              },
+              {
+                "kind": "Field",
+                "name": {
+                  "kind": "Name",
+                  "value": "name",
+                  "loc": { "start": 23, "end": 27 }
+                },
+                "arguments": [],
+                "directives": [],
+                "loc": { "start": 23, "end": 27 }
+              },
+              {
+                "kind": "Field",
+                "name": {
+                  "kind": "Name",
+                  "value": "surname",
+                  "loc": { "start": 32, "end": 39 }
+                },
+                "arguments": [],
+                "directives": [],
+                "loc": { "start": 32, "end": 39 }
+              }
+            ],
+            "loc": { "start": 10, "end": 43 }
+          },
+          "loc": { "start": 4, "end": 43 }
+        }
+      ],
+      "loc": { "start": 0, "end": 45 }
+    },
+    "loc": { "start": 0, "end": 45 }
+  },
+  "variableValues": {},
+  "cacheControl": { "cacheHint": { "maxAge": 0 } }
+}

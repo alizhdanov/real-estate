@@ -2,13 +2,30 @@
 ### Do not make changes to this file directly
 
 
+type Estate {
+  description: String!
+  id: ID!
+  title: String!
+  user: User!
+  user_id: Int!
+}
+
+type Mutation {
+  createUser(email: String!, name: String!, surname: String!): User!
+  deleteUser(id: String!): User!
+  updateUser(email: String, id: String!, name: String, surname: String): User!
+}
+
 type Query {
-  hell: String!
+  estates(limit: Int! = 5, offset: Int! = 0): [Estate!]!
+  estatesOffsetBased(after: Int! = 0, before: Int! = 0, first: Int! = 5, last: Int! = 5): [Estate!]!
   hello(name: String!): String!
   users: [User!]!
 }
 
 type User {
+  email: String!
   id: ID!
   name: String!
+  surname: String!
 }
