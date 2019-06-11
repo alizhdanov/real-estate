@@ -3,11 +3,25 @@
 
 
 type Estate {
+  amount: Int!
+  currency: String!
   description: String!
   id: ID!
+  price: EstatePrice!
   title: String!
+  type: EstateTypeEnum!
   user: User!
   user_id: Int!
+}
+
+type EstatePrice {
+  amount: Float!
+  currency: String!
+}
+
+enum EstateTypeEnum {
+  lease
+  sale
 }
 
 type Mutation {

@@ -14,14 +14,22 @@ export interface NexusGenInputs {
 }
 
 export interface NexusGenEnums {
+  EstateTypeEnum: "lease" | "sale"
 }
 
 export interface NexusGenRootTypes {
   Estate: { // root type
+    amount: number; // Int!
+    currency: string; // String!
     description: string; // String!
     id: string; // ID!
     title: string; // String!
+    type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
     user_id: number; // Int!
+  }
+  EstatePrice: { // root type
+    amount: number; // Float!
+    currency: string; // String!
   }
   Mutation: {};
   Query: {};
@@ -39,15 +47,24 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
+  EstateTypeEnum: NexusGenEnums['EstateTypeEnum'];
 }
 
 export interface NexusGenFieldTypes {
   Estate: { // field return type
+    amount: number; // Int!
+    currency: string; // String!
     description: string; // String!
     id: string; // ID!
+    price: NexusGenRootTypes['EstatePrice']; // EstatePrice!
     title: string; // String!
+    type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
     user: NexusGenRootTypes['User']; // User!
     user_id: number; // Int!
+  }
+  EstatePrice: { // field return type
+    amount: number; // Float!
+    currency: string; // String!
   }
   Mutation: { // field return type
     createUser: NexusGenRootTypes['User']; // User!
@@ -107,11 +124,11 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Estate" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "Estate" | "EstatePrice" | "Mutation" | "Query" | "User";
 
 export type NexusGenInputNames = never;
 
-export type NexusGenEnumNames = never;
+export type NexusGenEnumNames = "EstateTypeEnum";
 
 export type NexusGenInterfaceNames = never;
 

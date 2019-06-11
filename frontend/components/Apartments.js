@@ -1,9 +1,21 @@
 import React, { Component } from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { ApolloProvider } from 'react-apollo';
+import { Query } from 'react-apollo';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
 
 import Section from './Section';
 import AppartmentCard from './AppartmentCard';
+
+const GET_DOGS = gql`
+  {
+    estates {
+      id
+      title
+      type
+    }
+  }
+`;
 
 // TODO: if we use 1fr 1fr it fucked up everything
 const CardWrapper = styled.div`
@@ -28,42 +40,27 @@ const StyledAppartmentCard = styled(AppartmentCard)`
   }
 `;
 
-class Appartments extends Component {
-  state = {
-    appartments: null,
+const Appartments = ({ id }) => {
+  const { data } = useQuery(GET_DOGS);
+  const theme = {
+    bg: '#ededed',
   };
 
-  // TODO: make a server side rendering
-  loadAppartments = async () => {
-    const request = await fetch('/api/appartements');
-    const appartments = await request.json();
-    this.setState({
-      appartments,
-    });
-  };
+  console.log(data.estates);
 
-  componentDidMount() {
-    // this.loadAppartments();
-  }
-
-  render() {
-    const theme = {
-      bg: '#ededed',
-    };
-
-    return (
-      <ThemeProvider theme={theme}>
-        <Section id={this.props.id} header="Наши предложения" theme={theme}>
-          <CardWrapper>
-            {this.state.appartments &&
-              this.state.appartments.map(appartment => (
-                <StyledAppartmentCard key={appartment.id} data={appartment} />
-              ))}
-          </CardWrapper>
-        </Section>
-      </ThemeProvider>
-    );
-  }
-}
+  return (
+    <ThemeProvider theme={theme}>
+      <Section id={id} header="Наши предложения" theme={theme}>
+        <CardWrapper>
+          {data &&
+            data.estates &&
+            data.estates.map(appartment => (
+              <StyledAppartmentCard key={appartment.id} data={appartment} />
+            ))}
+        </CardWrapper>
+      </Section>
+    </ThemeProvider>
+  );
+};
 
 export default Appartments;

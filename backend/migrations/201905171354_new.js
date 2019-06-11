@@ -15,6 +15,8 @@ module.exports.up = async db => {
     table.string('title').notNullable()
     table.string('description').notNullable()
     table.string('type').notNullable() // rent type - sale / lease
+    table.float('amount').notNullable()
+    table.string('currency').notNullable()
     // we need to add price, which might be super complicated
     // pictures
     table
@@ -23,8 +25,6 @@ module.exports.up = async db => {
       .inTable('users')
     table.timestamps(false, true)
   })
-
-  console.log('DONE')
 }
 
 module.exports.down = async db => {

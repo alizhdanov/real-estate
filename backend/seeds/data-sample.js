@@ -14,7 +14,11 @@ module.exports.seed = async db => {
     title: faker.lorem.words(),
     description: faker.lorem.sentence(),
     type: faker.random.arrayElement(['sale', 'lease']),
+    amount: faker.finance.amount(),
+    currency: faker.finance.currencyCode(),
   }))
+
+  console.log(estates[0])
 
   await Promise.all(
     users.map(user =>

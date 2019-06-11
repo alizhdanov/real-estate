@@ -8,6 +8,7 @@
     "type-check": "tsc"
   },
   "dependencies": {
+    "@apollo/react-hooks": "^0.1.0-beta.7",
     "@zeit/next-typescript": "^1.1.1",
     "apollo-boost": "^0.4.2",
     "apollo-env": "^0.5.1",
