@@ -1,14 +1,5 @@
 import { objectType, enumType } from 'yoga'
 
-/*
-type Estate {
-  id: ID!
-  title: String!
-  description: String!
-  user_id: ID!
-}
-*/
-
 export const TypeEnum = enumType({
   name: 'EstateTypeEnum',
   members: ['sale', 'lease'],
@@ -33,17 +24,15 @@ export const Estate = objectType({
       resolve: ({ amount, currency }) => ({ amount, currency }),
     })
     t.string('description')
-    t.int('user_id')
-    t.int('amount')
-    t.string('currency')
     t.field('user', {
       type: 'User',
-      resolve: async (root, args, ctx) => {
+      resolve: async ({ user_id }, args, ctx) => {
         const users = await ctx.db
           .table('users')
-          .where({ id: String(root.user_id) })
+          .where({ id: String(user_id) })
           .select()
 
+        // TODO: this can be substituted with .first()
         return users && users[0]
       },
     })

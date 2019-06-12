@@ -51,10 +51,8 @@ const Table = styled.table`
 
 export default class extends Component {
   // @ts-ignore
-  static getInitialProps({ query: { slug } }) {
-    return {
-      postSlug: slug,
-    };
+  static getInitialProps({ query: { id } }) {
+    return { id };
   }
 
   render() {
@@ -90,9 +88,9 @@ export default class extends Component {
                 </tbody>
               </Table>
             </TextWrap>
-            <SliderWrap>
+            {/* <SliderWrap>
               <SliderWithPreview />
-            </SliderWrap>
+            </SliderWrap> */}
           </Wrap>
         </Container>
       </Layout>

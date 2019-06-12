@@ -9,10 +9,14 @@ import AppartmentCard from './AppartmentCard';
 
 const GET_DOGS = gql`
   {
-    estates {
+    estates(limit: 6) {
       id
       title
       type
+      price {
+        amount
+        currency
+      }
     }
   }
 `;
@@ -36,7 +40,7 @@ const StyledAppartmentCard = styled(AppartmentCard)`
   flex: 1 0 50%;
 
   @supports (display: grid) {
-    grid-column: span 6;
+    grid-column: span 4;
   }
 `;
 
@@ -45,8 +49,6 @@ const Appartments = ({ id }) => {
   const theme = {
     bg: '#ededed',
   };
-
-  console.log(data.estates);
 
   return (
     <ThemeProvider theme={theme}>

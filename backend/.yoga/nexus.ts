@@ -18,15 +18,7 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
-  Estate: { // root type
-    amount: number; // Int!
-    currency: string; // String!
-    description: string; // String!
-    id: string; // ID!
-    title: string; // String!
-    type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
-    user_id: number; // Int!
-  }
+  Estate: ctx.Estate;
   EstatePrice: { // root type
     amount: number; // Float!
     currency: string; // String!
@@ -52,15 +44,12 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Estate: { // field return type
-    amount: number; // Int!
-    currency: string; // String!
     description: string; // String!
     id: string; // ID!
     price: NexusGenRootTypes['EstatePrice']; // EstatePrice!
     title: string; // String!
     type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
     user: NexusGenRootTypes['User']; // User!
-    user_id: number; // Int!
   }
   EstatePrice: { // field return type
     amount: number; // Float!

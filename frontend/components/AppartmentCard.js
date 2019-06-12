@@ -4,7 +4,7 @@ import StyledButton from './StyledButton';
 import AppartmentCardSlider from './AppartmentsCardSlider';
 
 const Wrapper = styled.article`
-  padding: 20px 27px;
+  padding: 15px;
   background-color: #fff;
 `;
 
@@ -62,18 +62,12 @@ const AppartmentCard = ({ data, className }) => {
     });
   return (
     <Wrapper className={className}>
-      {/* ADD dynamic slides */}
-      {/* <Slider /> */}
       <Image src="/static/img/apartment-1-photo.jpg" alt="" />
       <Header>{data.title}</Header>
-      <TextLine>{data.fullAdress}</TextLine>
-      <TextLine>
-        {data.area} м2 | {data.rooms} комнаты
-      </TextLine>
       <BottomLine>
-        <Price>{data.price} грн. / сутки</Price>
-        <Button onClick={handler}>Больше</Button>
+        <Price>{data.price.amount} грн. / сутки</Price>
       </BottomLine>
+      <Button onClick={handler}>Больше</Button>
     </Wrapper>
   );
 };

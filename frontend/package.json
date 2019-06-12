@@ -2,7 +2,7 @@
   "name": "with-typescript",
   "version": "1.0.0",
   "scripts": {
-    "dev": "next",
+    "dev": "node server.js",
     "build": "next build",
     "start": "next start",
     "type-check": "tsc"
@@ -14,6 +14,7 @@
     "apollo-env": "^0.5.1",
     "apollo-link-http": "^1.5.14",
     "cross-fetch": "^3.0.4",
+    "express": "^4.17.1",
     "graphql": "^14.3.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^8.1.0",
