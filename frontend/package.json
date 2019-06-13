@@ -25,6 +25,7 @@
     "react-images": "^0.5.19",
     "react-modal": "^3.8.1",
     "react-slick": "^0.24.0",
+    "slick-carousel": "^1.8.1",
     "styled-components": "^4.2.0",
     "styled-theming": "^2.2.0"
   },

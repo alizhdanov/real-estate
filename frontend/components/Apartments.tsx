@@ -1,6 +1,5 @@
-import React, { Component } from 'react';
+import React from 'react';
 import styled, { ThemeProvider } from 'styled-components';
-import { Query } from 'react-apollo';
 import { useQuery } from '@apollo/react-hooks';
 import gql from 'graphql-tag';
 
@@ -44,7 +43,11 @@ const StyledAppartmentCard = styled(AppartmentCard)`
   }
 `;
 
-const Appartments = ({ id }) => {
+type Props = {
+  id: string;
+};
+
+const Appartments = ({ id }: Props) => {
   const { data } = useQuery(GET_DOGS);
   const theme = {
     bg: '#ededed',

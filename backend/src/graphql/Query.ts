@@ -24,6 +24,19 @@ export const Query = queryType({
       },
     })
 
+    t.field('estate', {
+      type: 'Estate',
+      args: {
+        id: intArg(),
+      },
+      resolve: (_, { id }, ctx) => {
+        return ctx.db
+          .table('estate')
+          .where('id', '=', id)
+          .first()
+      },
+    })
+
     t.list.field('estates', {
       type: 'Estate',
       args: {

@@ -61,6 +61,7 @@ export interface NexusGenFieldTypes {
     updateUser: NexusGenRootTypes['User']; // User!
   }
   Query: { // field return type
+    estate: NexusGenRootTypes['Estate']; // Estate!
     estates: NexusGenRootTypes['Estate'][]; // [Estate!]!
     estatesOffsetBased: NexusGenRootTypes['Estate'][]; // [Estate!]!
     hello: string; // String!
@@ -92,6 +93,9 @@ export interface NexusGenArgTypes {
     }
   }
   Query: {
+    estate: { // args
+      id: number; // Int!
+    }
     estates: { // args
       limit: number; // Int!
       offset: number; // Int!

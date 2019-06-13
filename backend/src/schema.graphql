@@ -28,6 +28,7 @@ type Mutation {
 }
 
 type Query {
+  estate(id: Int!): Estate!
   estates(limit: Int! = 5, offset: Int! = 0): [Estate!]!
   estatesOffsetBased(after: Int! = 0, before: Int! = 0, first: Int! = 5, last: Int! = 5): [Estate!]!
   hello(name: String!): String!
