@@ -9,3 +9,8 @@ declare module 'node-fetch' {
   const fetch: GlobalFetch['fetch'];
   export default fetch;
 }
+
+declare module '*.svg' {
+  const content: any;
+  export default content;
+}

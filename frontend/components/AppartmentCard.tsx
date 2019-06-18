@@ -1,5 +1,6 @@
 import styled from 'styled-components';
-import Router from 'next/router';
+import Link from 'next/link';
+
 import StyledButton from './StyledButton';
 import AppartmentCardSlider from './AppartmentsCardSlider';
 
@@ -55,11 +56,6 @@ const Button = styled(StyledButton)`
 `;
 
 const AppartmentCard = ({ data, className }) => {
-  const handler = () =>
-    Router.push({
-      pathname: `/appartements`,
-      query: { slug: data.slug },
-    });
   return (
     <Wrapper className={className}>
       <Image src="/static/img/apartment-1-photo.jpg" alt="" />
@@ -67,7 +63,9 @@ const AppartmentCard = ({ data, className }) => {
       <BottomLine>
         <Price>{data.price.amount} грн. / сутки</Price>
       </BottomLine>
-      <Button onClick={handler}>Больше</Button>
+      <Link href={`/estate/${data.id}`}>
+        <Button>Больше</Button>
+      </Link>
     </Wrapper>
   );
 };

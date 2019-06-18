@@ -3,7 +3,10 @@
 
 
 type Estate {
+  area: Int!
   description: String!
+  facilities: [String!]!
+  fullAddress: String!
   id: ID!
   price: EstatePrice!
   title: String!

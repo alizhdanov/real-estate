@@ -44,7 +44,10 @@ export interface NexusGenAllTypes extends NexusGenRootTypes {
 
 export interface NexusGenFieldTypes {
   Estate: { // field return type
+    area: number; // Int!
     description: string; // String!
+    facilities: string[]; // [String!]!
+    fullAddress: string; // String!
     id: string; // ID!
     price: NexusGenRootTypes['EstatePrice']; // EstatePrice!
     title: string; // String!

@@ -13,6 +13,9 @@ export interface Estate {
   currency: string
   description: string
   user_id: number | null
+  full_address: string
+  area: number
+  facilities: string[]
 }
 
 export default () => ({

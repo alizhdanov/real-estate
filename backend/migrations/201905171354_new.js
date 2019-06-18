@@ -17,6 +17,9 @@ module.exports.up = async db => {
     table.string('type').notNullable() // rent type - sale / lease
     table.float('amount').notNullable()
     table.string('currency').notNullable()
+    table.string('area')
+    table.string('full_address').notNullable()
+    table.specificType('facilities', 'text[]')
     // we need to add price, which might be super complicated
     // pictures
     table

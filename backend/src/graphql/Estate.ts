@@ -24,6 +24,9 @@ export const Estate = objectType({
       resolve: ({ amount, currency }) => ({ amount, currency }),
     })
     t.string('description')
+    t.int('area')
+    t.string('fullAddress', ({ full_address }) => full_address)
+    t.list.string('facilities')
     t.field('user', {
       type: 'User',
       resolve: async ({ user_id }, args, ctx) => {

@@ -14,6 +14,8 @@ const ESTATE_QUERY = gql`
       price {
         amount
       }
+      area
+      fullAddress
     }
   }
 `;
@@ -77,7 +79,7 @@ const Estate = ({ id }: Props) => {
     return null;
   }
 
-  const { title, price } = data.estate;
+  const { title, price, fullAddress, area } = data.estate;
 
   return (
     <Layout>
@@ -94,19 +96,11 @@ const Estate = ({ id }: Props) => {
                 </tr>
                 <tr>
                   <td>Адрес:</td>
-                  <td>Одесса, ул.Клевая, 77</td>
+                  <td>{fullAddress}</td>
                 </tr>
                 <tr>
                   <td>Площадь:</td>
-                  <td>40 м2</td>
-                </tr>
-                <tr>
-                  <td>Кол-во комнат:</td>
-                  <td>2</td>
-                </tr>
-                <tr>
-                  <td>Этаж:</td>
-                  <td>3</td>
+                  <td>{area} м2</td>
                 </tr>
               </tbody>
             </Table>

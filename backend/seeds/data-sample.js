@@ -16,6 +16,9 @@ module.exports.seed = async db => {
     type: faker.random.arrayElement(['sale', 'lease']),
     amount: faker.finance.amount(),
     currency: faker.finance.currencyCode(),
+    area: faker.random.number({ min: 20, max: 100 }),
+    full_address: faker.address.streetAddress(),
+    facilities: ['Wi-fi', 'Washing machine'],
   }))
 
   console.log(estates[0])
