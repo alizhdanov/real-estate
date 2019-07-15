@@ -28,11 +28,24 @@ module.exports.up = async db => {
       .inTable('users')
     table.timestamps(false, true)
   })
+
+  await db.schema.createTable('media', table => {
+    table.increments()
+    table.string('url')
+  })
+
+  await db.schema.createTable('media_estate', table => {
+    table.increments()
+    table.integer('estate_id').references('estate.id')
+    table.integer('media_id').references('media.id')
+  })
 }
 
 module.exports.down = async db => {
   await db.schema.dropTableIfExists('estate')
   await db.schema.dropTableIfExists('users')
+  await db.schema.dropTableIfExists('media')
+  await db.schema.dropTableIfExists('media_estate')
 }
 
 module.exports.configuration = { transaction: true }

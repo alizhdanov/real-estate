@@ -8,6 +8,7 @@ type Estate {
   facilities: [String!]!
   fullAddress: String!
   id: ID!
+  medias: [Media!]!
   price: EstatePrice!
   title: String!
   type: EstateTypeEnum!
@@ -24,6 +25,11 @@ enum EstateTypeEnum {
   sale
 }
 
+type Media {
+  id: ID!
+  url: String!
+}
+
 type Mutation {
   createUser(email: String!, name: String!, surname: String!): User!
   deleteUser(id: String!): User!
@@ -35,6 +41,7 @@ type Query {
   estates(limit: Int! = 5, offset: Int! = 0): [Estate!]!
   estatesOffsetBased(after: Int! = 0, before: Int! = 0, first: Int! = 5, last: Int! = 5): [Estate!]!
   hello(name: String!): String!
+  media(id: ID!): Media!
   users: [User!]!
 }
 

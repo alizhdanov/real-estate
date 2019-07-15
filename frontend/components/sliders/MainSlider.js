@@ -23,7 +23,7 @@ const settings = {
 const PreviewSlider = props => (
   <StyledSlider
     {...settings}
-    innerRef={props.sliderRef}
+    ref={props.sliderRef}
     afterChange={props.beforeChange}
   >
     {props.slides.map((slide, index) => (

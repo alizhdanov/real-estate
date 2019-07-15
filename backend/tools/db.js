@@ -16,8 +16,6 @@ const task = require('./task')
 const commands = ['version', 'migrate', 'rollback', 'migration', 'seed']
 const command = process.argv[2]
 
-console.log(process.env)
-
 const config = {
   client: 'pg',
   connection: {

@@ -44,6 +44,7 @@ export default App => {
       }
 
       // Extract query data from the Apollo store
+      // @ts-ignore
       const apolloState = apollo.cache.extract();
 
       return {

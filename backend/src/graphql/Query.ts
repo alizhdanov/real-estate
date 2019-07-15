@@ -1,4 +1,5 @@
-import { queryType, stringArg, intArg } from 'yoga'
+import { queryType, stringArg, intArg, idArg } from 'yoga'
+import context from '../context'
 
 /*
 type Query {
@@ -72,6 +73,20 @@ export const Query = queryType({
           .select()
 
         return estates
+      },
+    })
+
+    t.field('media', {
+      type: 'Media',
+      args: {
+        id: idArg(),
+      },
+      resolve: async (root, { id }, ctx) => {
+        return await ctx.db
+          .table('media')
+          .where('id', '=', id)
+          .select()
+          .first()
       },
     })
   },

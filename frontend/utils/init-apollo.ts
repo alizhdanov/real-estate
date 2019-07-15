@@ -1,9 +1,7 @@
 import { ApolloClient, InMemoryCache, HttpLink } from 'apollo-boost';
 
-// import * as fetch from 'cross-fetch';
-// import fetch from 'isomorphic-unfetch';
+// @ts-ignore
 import fetch from 'node-fetch';
-// import { fetch } from 'apollo-env';
 
 // @ts-ignore
 let apolloClient = null;
@@ -34,6 +32,7 @@ export default function initApollo(initialState) {
   // Reuse client on the client-side
   // @ts-ignore
   if (!apolloClient) {
+    // @ts-ignore
     apolloClient = create(initialState);
   }
   // @ts-ignore

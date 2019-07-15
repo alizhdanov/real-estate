@@ -16,6 +16,9 @@ const ESTATE_QUERY = gql`
       }
       area
       fullAddress
+      medias {
+        url
+      }
     }
   }
 `;
@@ -106,7 +109,7 @@ const Estate = ({ id }: Props) => {
             </Table>
           </TextWrap>
           <SliderWrap>
-            <SliderWithPreview />
+            <SliderWithPreview data={data} />
           </SliderWrap>
         </Wrap>
       </Container>

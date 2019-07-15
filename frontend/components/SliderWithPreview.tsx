@@ -1,51 +1,48 @@
 import React, { Component } from 'react';
-import styled from 'styled-components';
+// import styled from 'styled-components';
 import Lightbox from 'react-images';
 import MainSlider from './sliders/MainSlider';
 import PreviewSlider from './sliders/PreviewSlider';
 
-class SLiderWithPreviews extends Component {
+type Props = {
+  data: any;
+};
+
+type State = {
+  activeSlide: number;
+  lightboxIsOpen: boolean;
+  currentImage: number;
+  slides: string[];
+  slides2: string[];
+};
+
+class SLiderWithPreviews extends Component<Props, State> {
+  sliderMain: any;
+  sliderPreview: any;
+
   state = {
     activeSlide: 0,
     lightboxIsOpen: false,
     currentImage: 0,
-    slides: [
-      '/static/img/slider-1.jpg',
-      '/static/img/slider-2.jpg',
-      '/static/img/slider-3.jpg',
-      '/static/img/slider-4.jpg',
-      '/static/img/slider-5.jpg',
-      '/static/img/slider-6.jpg',
-      '/static/img/slider-7.jpg',
-      '/static/img/slider-8.jpg',
-    ],
-    slides2: [
-      { src: '/static/img/slider-1.jpg' },
-      { src: '/static/img/slider-2.jpg' },
-      { src: '/static/img/slider-3.jpg' },
-      { src: '/static/img/slider-4.jpg' },
-      { src: '/static/img/slider-5.jpg' },
-      { src: '/static/img/slider-6.jpg' },
-      { src: '/static/img/slider-7.jpg' },
-      { src: '/static/img/slider-8.jpg' },
-    ],
+    slides: this.props.data.estate.medias.map(i => i.url),
+    slides2: this.props.data.estate.medias.map(i => i.url),
   };
 
-  afterMainSliderChange = (oldIndex, newIndex) => {
+  afterMainSliderChange = (_oldIndex: number, newIndex: number) => {
     this.goToSlide(newIndex);
   };
 
-  onPreviewSliderChanged = (prev, next) => {
+  onPreviewSliderChanged = (prev: number, next: number) => {
     console.log(next, prev);
     this.sliderMain.innerSlider.slickGoTo(next);
   };
 
-  onPreviewClick = index => {
+  onPreviewClick = (index: number) => {
     this.sliderMain.innerSlider.slickGoTo(index);
     this.goToSlide(index);
   };
 
-  goToSlide = index => {
+  goToSlide = (index: number) => {
     const slidesAmount = this.state.slides.length;
     const lastIndex = slidesAmount - 4;
     if (index > lastIndex) {
@@ -57,7 +54,7 @@ class SLiderWithPreviews extends Component {
     this.sliderPreview.innerSlider.slickGoTo(index);
   };
 
-  setCurrentSlide = index => {
+  setCurrentSlide = (index: number) => {
     this.setState({
       activeSlide: index,
     });

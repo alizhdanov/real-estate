@@ -1,14 +1,11 @@
 const faker = require('faker')
 
 module.exports.seed = async db => {
-  // Create 10 random website users (as an example)
   const users = Array.from({ length: 10 }).map(() => ({
     name: faker.name.firstName(),
     surname: faker.name.lastName(),
     email: faker.internet.email(),
   }))
-
-  // const estates = [{ title: 'Flat 1', description: 'flat 1', type: 'rent', user_id: '1' }]
 
   const estates = Array.from({ length: 10 }).map(() => ({
     title: faker.lorem.words(),
@@ -21,7 +18,9 @@ module.exports.seed = async db => {
     facilities: ['Wi-fi', 'Washing machine'],
   }))
 
-  console.log(estates[0])
+  const medias = Array.from({ length: 10 }).map(() => ({
+    url: faker.image.image(),
+  }))
 
   await Promise.all(
     users.map(user =>
@@ -38,6 +37,29 @@ module.exports.seed = async db => {
         .table('estate')
         .insert(estate)
         .returning('id'),
+    ),
+  )
+
+  await Promise.all(
+    medias.map(media =>
+      db
+        .table('media')
+        .insert(media)
+        .returning('id'),
+    ),
+  )
+
+  const estateIds = (await db.from('estate').select('id')).map(i => i.id)
+  const mediaIds = (await db.from('media').select('id')).map(i => i.id)
+
+  await Promise.all(
+    estateIds.map(
+      async id =>
+        await Promise.all(
+          Array.from({ length: faker.random.number({ min: 1, max: 5 }) }).map(() =>
+            db.table('media_estate').insert({ estate_id: id, media_id: faker.random.arrayElement(mediaIds) }),
+          ),
+        ),
     ),
   )
 }

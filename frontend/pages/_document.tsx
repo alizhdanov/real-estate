@@ -1,5 +1,5 @@
 import Document, {
-  NextDocumentContext,
+  DocumentContext,
   Head,
   Main,
   NextScript,
@@ -19,8 +19,9 @@ const resetStyles = `
   }
 `;
 
+// @ts-ignore
 export default class MyDocument extends Document {
-  static async getInitialProps(ctx: NextDocumentContext) {
+  static async getInitialProps(ctx: DocumentContext) {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
@@ -60,6 +61,8 @@ export default class MyDocument extends Document {
             rel="stylesheet"
           />
           {/* TODO: inline it */}
+          {/* 
+          // @ts-ignore */}
           <link
             rel="stylesheet"
             type="text/css"

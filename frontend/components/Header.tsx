@@ -44,7 +44,9 @@ const Header = ({ className }: Props) => {
       <Container>
         <FlexWrapper>
           <Link href="/">
-            <Logo src="/static/img/logo.png" alt="Real estate agency logo" />
+            <a>
+              <Logo src="/static/img/logo.png" alt="Real estate agency logo" />
+            </a>
           </Link>
           <Navigation>
             <Nav />

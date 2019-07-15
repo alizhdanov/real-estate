@@ -23,6 +23,10 @@ export interface NexusGenRootTypes {
     amount: number; // Float!
     currency: string; // String!
   }
+  Media: { // root type
+    id: string; // ID!
+    url: string; // String!
+  }
   Mutation: {};
   Query: {};
   User: { // root type
@@ -49,6 +53,7 @@ export interface NexusGenFieldTypes {
     facilities: string[]; // [String!]!
     fullAddress: string; // String!
     id: string; // ID!
+    medias: NexusGenRootTypes['Media'][]; // [Media!]!
     price: NexusGenRootTypes['EstatePrice']; // EstatePrice!
     title: string; // String!
     type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
@@ -57,6 +62,10 @@ export interface NexusGenFieldTypes {
   EstatePrice: { // field return type
     amount: number; // Float!
     currency: string; // String!
+  }
+  Media: { // field return type
+    id: string; // ID!
+    url: string; // String!
   }
   Mutation: { // field return type
     createUser: NexusGenRootTypes['User']; // User!
@@ -68,6 +77,7 @@ export interface NexusGenFieldTypes {
     estates: NexusGenRootTypes['Estate'][]; // [Estate!]!
     estatesOffsetBased: NexusGenRootTypes['Estate'][]; // [Estate!]!
     hello: string; // String!
+    media: NexusGenRootTypes['Media']; // Media!
     users: NexusGenRootTypes['User'][]; // [User!]!
   }
   User: { // field return type
@@ -112,6 +122,9 @@ export interface NexusGenArgTypes {
     hello: { // args
       name: string; // String!
     }
+    media: { // args
+      id: string; // ID!
+    }
   }
 }
 
@@ -120,7 +133,7 @@ export interface NexusGenAbstractResolveReturnTypes {
 
 export interface NexusGenInheritedFields {}
 
-export type NexusGenObjectNames = "Estate" | "EstatePrice" | "Mutation" | "Query" | "User";
+export type NexusGenObjectNames = "Estate" | "EstatePrice" | "Media" | "Mutation" | "Query" | "User";
 
 export type NexusGenInputNames = never;
 

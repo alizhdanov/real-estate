@@ -6,9 +6,16 @@
     "build": "yoga build",
     "build:ci": "yarn build",
     "start": "yoga start",
-    "lint": "echo linting disabled"
+    "lint": "echo linting disabled",
+    "db": "node tools/db",
+    "db:version": "yarn run db version",
+    "db:migrate": "yarn run db migrate",
+    "db:rollback": "yarn run db rollback",
+    "db:migration": "yarn run db migration",
+    "db:seed": "yarn run db seed"
   },
   "dependencies": {
+    "dataloader": "^1.4.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "knex": "^0.16.5",

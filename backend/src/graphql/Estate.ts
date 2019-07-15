@@ -39,5 +39,13 @@ export const Estate = objectType({
         return users && users[0]
       },
     })
+    t.list.field('medias', {
+      type: 'Media',
+      resolve: async ({ id }, args, ctx) => {
+        const medias = await ctx.retriever.mediaByEstateId.load(id)
+
+        return medias
+      },
+    })
   },
 })

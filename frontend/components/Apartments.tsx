@@ -5,20 +5,19 @@ import gql from 'graphql-tag';
 
 import Section from './Section';
 import AppartmentCard from './AppartmentCard';
+import { ApartmentsQueryQuery } from '../generated/graphql';
 
 const GET_DOGS = gql`
-  {
+  query ApartmentsQuery {
     estates(limit: 6) {
       id
-      title
-      type
-      price {
-        amount
-        currency
-      }
+      ...AppartmentCard_data
     }
   }
+  ${AppartmentCard.fragments.data}
 `;
+
+console.log(GET_DOGS);
 
 // TODO: if we use 1fr 1fr it fucked up everything
 const CardWrapper = styled.div`
@@ -48,7 +47,7 @@ type Props = {
 };
 
 const Appartments = ({ id }: Props) => {
-  const { data } = useQuery(GET_DOGS);
+  const { data } = useQuery<ApartmentsQueryQuery>(GET_DOGS);
   const theme = {
     bg: '#ededed',
   };
