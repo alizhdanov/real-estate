@@ -30,6 +30,8 @@ const apolloServer = new GraphQLServer({
   context,
 })
 
-apolloServer.start({ port: '4477' }, ({ port }) =>
-  console.log(`Server is running on http://localhost:${port}`),
+apolloServer.start(
+  // some issues with now routing, fix it after deploying to proper hosting
+  { port: '4477', playground: '/graphql', endpoint: '/graphql' },
+  ({ port }) => console.log(`Server is running on http://localhost:${port}`),
 )
