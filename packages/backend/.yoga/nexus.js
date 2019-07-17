@@ -3,7 +3,7 @@
  * Do not make changes to this file directly
  */
 
-import * as ctx from "../src/context"
+
 
 
 
@@ -20,7 +20,14 @@ export interface NexusGenEnums {
 }
 
 export interface NexusGenRootTypes {
-  Estate: ctx.Estate;
+  Estate: { // root type
+    area: number; // Int!
+    description: string; // String!
+    facilities: string[]; // [String!]!
+    id: string; // ID!
+    title: string; // String!
+    type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
+  }
   EstatePrice: { // root type
     amount: number; // Float!
     currency: string; // String!

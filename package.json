@@ -8,6 +8,7 @@
     "lerna": "^3.15.0"
   },
   "scripts": {
+    "changed": "lerna changed",
     "build:frontend": "yarn workspace frontend build"
   }
 }

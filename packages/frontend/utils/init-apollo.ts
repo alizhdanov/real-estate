@@ -13,7 +13,7 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: 'http://127.0.0.1:4477/', // Server URL (must be absolute)
+      uri: '/api/', // Server URL (must be absolute)
       // Use fetch() polyfill on the server
       fetch,
     }),

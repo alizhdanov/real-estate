@@ -1,5 +1,5 @@
 import * as knex from 'knex'
-
+// @ts-ignore
 export const db = knex({
   client: 'pg',
   connection: {

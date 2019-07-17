@@ -1,4 +1,18 @@
 {
+  "name": "monorepo",
   "version": 2,
-  "builds": [{ "src": "packages/frontend/package.json", "use": "@now/next" }]
+  "builds": [
+    { "src": "packages/frontend/package.json", "use": "@now/next" },
+    { "src": "packages/backend/src/server.ts", "use": "@now/node" }
+  ],
+  "routes": [
+    {
+      "src": "/graphql",
+      "dest": "packages/backend/src/server.ts"
+    },
+    {
+      "src": "/(.*)",
+      "dest": "/packages/frontend/$1"
+    }
+  ]
 }

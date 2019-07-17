@@ -41,6 +41,7 @@ export const Estate = objectType({
     })
     t.list.field('medias', {
       type: 'Media',
+      // @ts-ignore
       resolve: async ({ id }, args, ctx) => {
         const medias = await ctx.retriever.mediaByEstateId.load(id)
 

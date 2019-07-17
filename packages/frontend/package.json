@@ -6,7 +6,8 @@
     "build": "next build",
     "start": "next start",
     "type-check": "tsc",
-    "codegen": "graphql-codegen --config codegen.yml"
+    "codegen": "graphql-codegen --config codegen.yml",
+    "deploy": "now"
   },
   "dependencies": {
     "@apollo/react-hooks": "^0.1.0-beta.7",
@@ -41,6 +42,7 @@
     "@types/styled-components": "^4.1.15",
     "babel-plugin-inline-react-svg": "^1.1.0",
     "babel-plugin-styled-components": "^1.10.0",
+    "now": "^15.8.0",
     "typescript": "3.2.4"
   },
   "license": "ISC"

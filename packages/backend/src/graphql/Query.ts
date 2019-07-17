@@ -1,5 +1,4 @@
 import { queryType, stringArg, intArg, idArg } from 'yoga'
-import context from '../context'
 
 /*
 type Query {

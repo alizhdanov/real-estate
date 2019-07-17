@@ -2,10 +2,10 @@
   "name": "backend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "yoga dev",
-    "build": "yoga build",
+    "dev": "ts-node src/server.ts",
+    "build": "tsc",
     "build:ci": "yarn build",
-    "start": "yoga start",
+    "start": "node dist/src/server.js",
     "lint": "echo linting disabled",
     "db": "node tools/db",
     "db:version": "yarn run db version",
@@ -15,10 +15,14 @@
     "db:seed": "yarn run db seed"
   },
   "dependencies": {
+    "@now/node": "^0.11.1",
     "dataloader": "^1.4.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
+    "graphql": "^14.4.2",
+    "graphql-yoga": "^1.18.1",
     "knex": "^0.16.5",
+    "nexus": "^0.12.0-beta.6",
     "pg": "^7.11.0",
     "yoga": "0.0.20"
   },
@@ -27,7 +31,9 @@
     "@types/node": "^10.12.11",
     "@types/ws": "^6.0.1",
     "faker": "^4.1.0",
-    "typescript": "^3.2.1"
+    "now": "^15.8.0",
+    "ts-node": "^8.3.0",
+    "typescript": "^3.5.3"
   },
   "prettier": {
     "semi": false,
