@@ -1,4 +1,4 @@
-import { objectType, enumType } from 'yoga'
+import { objectType, enumType } from 'nexus'
 
 export const TypeEnum = enumType({
   name: 'EstateTypeEnum',

@@ -2,13 +2,7 @@ import * as knex from 'knex'
 // @ts-ignore
 export const db = knex({
   client: 'pg',
-  connection: {
-    host: 'localhost',
-    port: '5432',
-    database: process.env.DB_DATABASE,
-    user: process.env.DB_USERNAME,
-    password: process.env.DB_PASSWORD,
-  },
+  connection: process.env.DB_CONNECTION,
   migrations: {
     tableName: 'migrations',
   },

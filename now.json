@@ -3,16 +3,20 @@
   "version": 2,
   "builds": [
     { "src": "packages/frontend/package.json", "use": "@now/next" },
-    { "src": "packages/backend/src/server.ts", "use": "@now/node" }
+    { "src": "packages/backend/dist/src/server.js", "use": "@now/node-server" }
   ],
   "routes": [
     {
       "src": "/graphql",
-      "dest": "packages/backend/src/server.ts"
+      "dest": "packages/backend/dist/src/server.js"
     },
     {
       "src": "/(.*)",
       "dest": "/packages/frontend/$1"
     }
-  ]
+  ],
+  "env": {
+    "GRAPHQL_URL": "/graphql",
+    "DB_CONNECTION": "@db-connection"
+  }
 }

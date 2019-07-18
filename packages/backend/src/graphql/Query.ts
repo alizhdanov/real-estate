@@ -1,4 +1,4 @@
-import { queryType, stringArg, intArg, idArg } from 'yoga'
+import { queryType, stringArg, intArg, idArg } from 'nexus'
 
 /*
 type Query {

@@ -1,4 +1,4 @@
-import { mutationType, stringArg } from 'yoga'
+import { mutationType, stringArg } from 'nexus'
 
 /*
 type Query {
