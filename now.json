@@ -16,7 +16,7 @@
     }
   ],
   "env": {
-    "GRAPHQL_URL": "/graphql",
+    "REACT_APP_GRAPHQL_URL": "/graphql",
     "DB_CONNECTION": "@db-connection"
   }
 }

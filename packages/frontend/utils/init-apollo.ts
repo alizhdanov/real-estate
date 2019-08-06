@@ -13,7 +13,10 @@ function create(initialState) {
     connectToDevTools: process.browser,
     ssrMode: !process.browser, // Disables forceFetch on the server (so queries are only run once)
     link: new HttpLink({
-      uri: process.env.GRAPHQL_URL, // Server URL (must be absolute)
+      uri:
+        (process && process.env && process.env.REACT_APP_GRAPHQL_URL) ||
+        // @ts-ignore
+        window.env.REACT_APP_GRAPHQL_URL, // Server URL (must be absolute)
       // Use fetch() polyfill on the server
       fetch,
     }),

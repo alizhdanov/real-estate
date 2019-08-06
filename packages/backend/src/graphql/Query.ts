@@ -1,4 +1,5 @@
 import { queryType, stringArg, intArg, idArg } from 'nexus'
+import console = require('console')
 
 /*
 type Query {
@@ -44,6 +45,7 @@ export const Query = queryType({
         offset: intArg({ default: 0 }),
       },
       resolve: async (root, { limit, offset }, ctx) => {
+        console.log(ctx.db)
         const estates = await ctx.db
           .table('estate')
           .offset(offset)

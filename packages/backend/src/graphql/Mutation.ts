@@ -1,4 +1,6 @@
-import { mutationType, stringArg } from 'nexus'
+import { mutationType, stringArg, intArg } from 'nexus'
+
+import { db } from '../data'
 
 /*
 type Query {
@@ -77,6 +79,64 @@ export const Mutation = mutationType({
         } catch (err) {
           throw err
         }
+      },
+    })
+
+    t.field('createEstate', {
+      type: 'Estate',
+      args: {
+        title: stringArg(),
+        description: stringArg(),
+        type: stringArg(),
+        amount: intArg(),
+        currency: stringArg(),
+        fullAddress: stringArg(),
+      },
+      resolve: async (root, { fullAddress: full_address, ...input }) => {
+        const estate = await db
+          .table('estate')
+          .insert({ full_address, ...input })
+          .returning('*')
+
+        return estate && estate[0]
+      },
+    })
+
+    t.field('updateEstate', {
+      type: 'Estate',
+      args: {
+        id: stringArg(),
+        title: stringArg({ nullable: true }),
+        description: stringArg({ nullable: true }),
+        type: stringArg({ nullable: true }),
+        amount: intArg({ nullable: true }),
+        currency: stringArg({ nullable: true }),
+        fullAddress: stringArg({ nullable: true }),
+      },
+      resolve: async (root, { fullAddress: full_address, ...input }) => {
+        const estate = await db
+          .table('estate')
+          .where({ id: input.id })
+          .update({ full_address, ...input })
+          .returning('*')
+
+        return estate && estate[0]
+      },
+    })
+
+    t.field('deleteEstate', {
+      type: 'Estate',
+      args: {
+        id: stringArg(),
+      },
+      resolve: async (root, { id }, { db }) => {
+        const estate = await db
+          .table('estate')
+          .where({ id: id })
+          .del()
+          .returning('*')
+
+        return estate && estate[0]
       },
     })
   },

@@ -31,8 +31,11 @@ type Media {
 }
 
 type Mutation {
+  createEstate(amount: Int!, currency: String!, description: String!, fullAddress: String!, title: String!, type: String!): Estate!
   createUser(email: String!, name: String!, surname: String!): User!
+  deleteEstate(id: String!): Estate!
   deleteUser(id: String!): User!
+  updateEstate(amount: Int, currency: String, description: String, fullAddress: String, id: String!, title: String, type: String): Estate!
   updateUser(email: String, id: String!, name: String, surname: String): User!
 }
 

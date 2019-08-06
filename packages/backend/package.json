@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "ts-node src/server.ts",
+    "dev": "ts-node-dev --respawn src/server.ts",
     "build": "tsc",
     "build:ci": "yarn build",
     "now-build": "yarn build",
@@ -16,14 +16,15 @@
     "db:seed": "yarn run db seed"
   },
   "dependencies": {
+    "conditional-elements": "^0.0.1",
     "dataloader": "^1.4.0",
     "dotenv": "^8.0.0",
     "express": "^4.16.4",
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.1",
-    "knex": "^0.19.0",
+    "knex": "^0.19.1",
     "nexus": "^0.12.0-beta.6",
-    "pg": "^7.11.0"
+    "pg": "^7.12.0"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.4",
@@ -32,6 +33,7 @@
     "dotenv": "^8.0.0",
     "faker": "^4.1.0",
     "ts-node": "^8.3.0",
+    "ts-node-dev": "^1.0.0-pre.40",
     "typescript": "^3.5.3"
   },
   "prettier": {

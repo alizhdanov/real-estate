@@ -25,6 +25,14 @@ export default class MyDocument extends Document {
     const sheet = new ServerStyleSheet();
     const originalRenderPage = ctx.renderPage;
 
+    // inject env variables starting with REACT_APP_
+    const env = {};
+    for (const key in process.env) {
+      if (key.startsWith('REACT_APP_')) {
+        env[key] = process.env[key];
+      }
+    }
+
     try {
       ctx.renderPage = () =>
         originalRenderPage({
@@ -34,6 +42,7 @@ export default class MyDocument extends Document {
       const initialProps = await Document.getInitialProps(ctx);
       return {
         ...initialProps,
+        env,
         styles: (
           <>
             {initialProps.styles}
@@ -47,8 +56,21 @@ export default class MyDocument extends Document {
   }
 
   render() {
+    // @ts-ignore
+    const { env } = this.props;
+
+    const injectEnv = () => {
+      const envObject = 'window.env = {};';
+      const ret = Object.keys(env).reduce((prevValue, currentValue) => {
+        return (
+          prevValue + `window.env.${currentValue} = '${env[currentValue]}';`
+        );
+      }, '');
+      return envObject + ret;
+    };
     return (
       <html>
+        <script dangerouslySetInnerHTML={{ __html: injectEnv() }} />
         <Head>
           <meta httpEquiv="X-UA-Compatible" content="IE=edge,chrome=1" />
           <meta

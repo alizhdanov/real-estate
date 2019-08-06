@@ -70,8 +70,11 @@ export interface NexusGenFieldTypes {
     url: string; // String!
   }
   Mutation: { // field return type
+    createEstate: NexusGenRootTypes['Estate']; // Estate!
     createUser: NexusGenRootTypes['User']; // User!
+    deleteEstate: NexusGenRootTypes['Estate']; // Estate!
     deleteUser: NexusGenRootTypes['User']; // User!
+    updateEstate: NexusGenRootTypes['Estate']; // Estate!
     updateUser: NexusGenRootTypes['User']; // User!
   }
   Query: { // field return type
@@ -92,13 +95,33 @@ export interface NexusGenFieldTypes {
 
 export interface NexusGenArgTypes {
   Mutation: {
+    createEstate: { // args
+      amount: number; // Int!
+      currency: string; // String!
+      description: string; // String!
+      fullAddress: string; // String!
+      title: string; // String!
+      type: string; // String!
+    }
     createUser: { // args
       email: string; // String!
       name: string; // String!
       surname: string; // String!
     }
+    deleteEstate: { // args
+      id: string; // String!
+    }
     deleteUser: { // args
       id: string; // String!
+    }
+    updateEstate: { // args
+      amount?: number | null; // Int
+      currency?: string | null; // String
+      description?: string | null; // String
+      fullAddress?: string | null; // String
+      id: string; // String!
+      title?: string | null; // String
+      type?: string | null; // String
     }
     updateUser: { // args
       email?: string | null; // String

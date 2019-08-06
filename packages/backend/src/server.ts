@@ -1,3 +1,6 @@
+require('dotenv').config()
+require('dotenv').config()
+
 import * as path from 'path'
 import { makeSchema } from 'nexus'
 import { GraphQLServer } from 'graphql-yoga'
