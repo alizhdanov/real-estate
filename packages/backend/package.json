@@ -2,7 +2,7 @@
   "name": "backend",
   "version": "0.0.0",
   "scripts": {
-    "dev": "ts-node-dev --respawn src/server.ts",
+    "dev": "ts-node-dev  --no-notify --respawn --transpileOnly src/server.ts",
     "build": "tsc",
     "build:ci": "yarn build",
     "now-build": "yarn build",
