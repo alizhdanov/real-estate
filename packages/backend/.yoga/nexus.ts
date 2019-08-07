@@ -100,6 +100,7 @@ export interface NexusGenArgTypes {
       currency: string; // String!
       description: string; // String!
       fullAddress: string; // String!
+      media: string[]; // [String!]!
       title: string; // String!
       type: string; // String!
     }

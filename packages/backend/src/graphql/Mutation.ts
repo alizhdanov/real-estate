@@ -91,12 +91,30 @@ export const Mutation = mutationType({
         amount: intArg(),
         currency: stringArg(),
         fullAddress: stringArg(),
+        media: stringArg({ list: true }),
       },
-      resolve: async (root, { fullAddress: full_address, ...input }) => {
-        const estate = await db
+      resolve: async (root, { fullAddress: full_address, media, ...input }) => {
+        // creating estate
+        const estatePromise = db
           .table('estate')
           .insert({ full_address, ...input })
           .returning('*')
+
+        // creating medias
+        const mediaPromise = db
+          .table('media')
+          .insert(media.map(url => ({ url })))
+          .returning('id')
+
+        const [estate, medias] = await Promise.all([
+          estatePromise,
+          mediaPromise,
+        ])
+
+        // connecting media and estate
+        await db
+          .table('media_estate')
+          .insert(medias.map(id => ({ estate_id: estate[0].id, media_id: id })))
 
         return estate && estate[0]
       },
