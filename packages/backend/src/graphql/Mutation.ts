@@ -1,6 +1,22 @@
-import { mutationType, stringArg, intArg } from 'nexus'
+import {
+  mutationType,
+  stringArg,
+  intArg,
+  inputObjectType,
+  mutationField,
+} from 'nexus'
 
-import { db } from '../data'
+import { difference } from 'lodash'
+import MediaConnector from '../models/media'
+import EstateConnector from '../models/estate'
+import console = require('console')
+
+export const UpdateEstateInputType = inputObjectType({
+  name: 'UpdateEstateInputType',
+  definition(t) {
+    t.field('medias', { type: 'MediaInputType', list: true })
+  },
+})
 
 /*
 type Query {
@@ -82,44 +98,6 @@ export const Mutation = mutationType({
       },
     })
 
-    t.field('createEstate', {
-      type: 'Estate',
-      args: {
-        title: stringArg(),
-        description: stringArg(),
-        type: stringArg(),
-        amount: intArg(),
-        currency: stringArg(),
-        fullAddress: stringArg(),
-        media: stringArg({ list: true }),
-      },
-      resolve: async (root, { fullAddress: full_address, media, ...input }) => {
-        // creating estate
-        const estatePromise = db
-          .table('estate')
-          .insert({ full_address, ...input })
-          .returning('*')
-
-        // creating medias
-        const mediaPromise = db
-          .table('media')
-          .insert(media.map(url => ({ url })))
-          .returning('id')
-
-        const [estate, medias] = await Promise.all([
-          estatePromise,
-          mediaPromise,
-        ])
-
-        // connecting media and estate
-        await db
-          .table('media_estate')
-          .insert(medias.map(id => ({ estate_id: estate[0].id, media_id: id })))
-
-        return estate && estate[0]
-      },
-    })
-
     t.field('updateEstate', {
       type: 'Estate',
       args: {
@@ -130,13 +108,50 @@ export const Mutation = mutationType({
         amount: intArg({ nullable: true }),
         currency: stringArg({ nullable: true }),
         fullAddress: stringArg({ nullable: true }),
+        input: UpdateEstateInputType,
       },
-      resolve: async (root, { fullAddress: full_address, ...input }) => {
+      resolve: async (
+        root,
+        { fullAddress: full_address, input, ...rest },
+        { db },
+      ) => {
+        // update estate
         const estate = await db
           .table('estate')
-          .where({ id: input.id })
-          .update({ full_address, ...input })
+          .where({ id: rest.id })
+          .update({ full_address, ...rest })
           .returning('*')
+
+        // get media related to estate
+        const estateMedias = await MediaConnector.getEstateMedias(rest.id)
+
+        const { medias } = input
+
+        // divide media input on new and just media
+        // new - which needed to be create
+        // just - already created
+        const [newMedias, justMedias] = medias.reduce(
+          (acc, media) => {
+            acc[media.id ? 1 : 0].push(media)
+            return acc
+          },
+          [[], []],
+        )
+
+        // if there are new medias, we should create them
+        if (newMedias.length) {
+          MediaConnector.createEstateMedias(rest.id, newMedias)
+        }
+
+        const estateMediaIds = estateMedias.map(m => m.id)
+        const justMediasIds = justMedias.map(j => Number(j.id))
+        // compare ids to check which missing, in order to delete them
+        const differenceIds = difference(estateMediaIds, justMediasIds)
+
+        if (differenceIds.length) {
+          // remove those different ids
+          await MediaConnector.deleteEstateMedias(differenceIds)
+        }
 
         return estate && estate[0]
       },
@@ -157,5 +172,33 @@ export const Mutation = mutationType({
         return estate && estate[0]
       },
     })
+  },
+})
+
+export const createEstate = mutationField('createEstate', {
+  type: 'Estate',
+  args: {
+    title: stringArg(),
+    description: stringArg(),
+    type: stringArg(),
+    amount: intArg(),
+    currency: stringArg(),
+    fullAddress: stringArg(),
+    media: stringArg({ list: true }),
+  },
+  resolve: async (root, { fullAddress: full_address, media, ...input }) => {
+    console.log('AGBONLAHOR')
+    // creating estate
+    const estate = await EstateConnector.createEstate({
+      full_address,
+      ...input,
+    })
+
+    console.log({ estate })
+    await MediaConnector.createEstateMedias(
+      estate[0].id,
+      media.map(url => ({ url })),
+    )
+    return estate && estate[0]
   },
 })

@@ -1,9 +1,4 @@
-import { objectType, enumType } from 'nexus'
-
-export const TypeEnum = enumType({
-  name: 'EstateTypeEnum',
-  members: ['sale', 'lease'],
-})
+import { objectType } from 'nexus'
 
 export const Price = objectType({
   name: 'EstatePrice',
@@ -18,7 +13,7 @@ export const Estate = objectType({
   definition(t) {
     t.id('id')
     t.string('title')
-    t.field('type', { type: 'EstateTypeEnum' })
+    t.string('type')
     t.field('price', {
       type: 'EstatePrice',
       resolve: ({ amount, currency }) => ({ amount, currency }),

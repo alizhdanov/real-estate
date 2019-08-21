@@ -13,10 +13,16 @@ declare global {
 }
 
 export interface NexusGenInputs {
+  MediaInputType: { // input type
+    id?: string | null; // ID
+    url?: string | null; // String
+  }
+  UpdateEstateInputType: { // input type
+    medias: NexusGenInputs['MediaInputType'][]; // [MediaInputType!]!
+  }
 }
 
 export interface NexusGenEnums {
-  EstateTypeEnum: "lease" | "sale"
 }
 
 export interface NexusGenRootTypes {
@@ -45,7 +51,8 @@ export interface NexusGenRootTypes {
 }
 
 export interface NexusGenAllTypes extends NexusGenRootTypes {
-  EstateTypeEnum: NexusGenEnums['EstateTypeEnum'];
+  MediaInputType: NexusGenInputs['MediaInputType'];
+  UpdateEstateInputType: NexusGenInputs['UpdateEstateInputType'];
 }
 
 export interface NexusGenFieldTypes {
@@ -58,7 +65,7 @@ export interface NexusGenFieldTypes {
     medias: NexusGenRootTypes['Media'][]; // [Media!]!
     price: NexusGenRootTypes['EstatePrice']; // EstatePrice!
     title: string; // String!
-    type: NexusGenEnums['EstateTypeEnum']; // EstateTypeEnum!
+    type: string; // String!
     user: NexusGenRootTypes['User']; // User!
   }
   EstatePrice: { // field return type
@@ -121,6 +128,7 @@ export interface NexusGenArgTypes {
       description?: string | null; // String
       fullAddress?: string | null; // String
       id: string; // String!
+      input: NexusGenInputs['UpdateEstateInputType']; // UpdateEstateInputType!
       title?: string | null; // String
       type?: string | null; // String
     }
@@ -161,9 +169,9 @@ export interface NexusGenInheritedFields {}
 
 export type NexusGenObjectNames = "Estate" | "EstatePrice" | "Media" | "Mutation" | "Query" | "User";
 
-export type NexusGenInputNames = never;
+export type NexusGenInputNames = "MediaInputType" | "UpdateEstateInputType";
 
-export type NexusGenEnumNames = "EstateTypeEnum";
+export type NexusGenEnumNames = never;
 
 export type NexusGenInterfaceNames = never;
 

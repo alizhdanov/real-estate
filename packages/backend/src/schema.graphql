@@ -11,7 +11,7 @@ type Estate {
   medias: [Media!]!
   price: EstatePrice!
   title: String!
-  type: EstateTypeEnum!
+  type: String!
   user: User!
 }
 
@@ -20,14 +20,14 @@ type EstatePrice {
   currency: String!
 }
 
-enum EstateTypeEnum {
-  lease
-  sale
-}
-
 type Media {
   id: ID!
   url: String!
+}
+
+input MediaInputType {
+  id: ID
+  url: String
 }
 
 type Mutation {
@@ -35,7 +35,7 @@ type Mutation {
   createUser(email: String!, name: String!, surname: String!): User!
   deleteEstate(id: String!): Estate!
   deleteUser(id: String!): User!
-  updateEstate(amount: Int, currency: String, description: String, fullAddress: String, id: String!, title: String, type: String): Estate!
+  updateEstate(amount: Int, currency: String, description: String, fullAddress: String, id: String!, input: UpdateEstateInputType!, title: String, type: String): Estate!
   updateUser(email: String, id: String!, name: String, surname: String): User!
 }
 
@@ -46,6 +46,10 @@ type Query {
   hello(name: String!): String!
   media(id: ID!): Media!
   users: [User!]!
+}
+
+input UpdateEstateInputType {
+  medias: [MediaInputType!]!
 }
 
 type User {

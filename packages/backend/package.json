@@ -13,7 +13,8 @@
     "db:migrate": "yarn run db migrate",
     "db:rollback": "yarn run db rollback",
     "db:migration": "yarn run db migration",
-    "db:seed": "yarn run db seed"
+    "db:seed": "yarn run db seed",
+    "test": "jest"
   },
   "dependencies": {
     "conditional-elements": "^0.0.1",
@@ -23,15 +24,19 @@
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.1",
     "knex": "^0.19.1",
+    "lodash": "^4.17.15",
     "nexus": "^0.12.0-beta.6",
     "pg": "^7.12.0"
   },
   "devDependencies": {
     "@types/graphql": "^14.0.4",
+    "@types/jest": "^24.0.18",
     "@types/node": "^10.12.11",
     "@types/ws": "^6.0.1",
     "dotenv": "^8.0.0",
     "faker": "^4.1.0",
+    "jest": "^24.9.0",
+    "ts-jest": "^24.0.2",
     "ts-node": "^8.3.0",
     "ts-node-dev": "^1.0.0-pre.40",
     "typescript": "^3.5.3"

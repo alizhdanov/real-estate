@@ -10,6 +10,7 @@ export interface Context {
 }
 
 class Retriever {
+  // TODO: move into models
   mediaByEstateId = new DataLoader(async (keys: (string | number)[]) => {
     const result = await db
       .table('media_estate')
