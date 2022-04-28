@@ -13,7 +13,7 @@
     "apollo-boost": "^0.4.2",
     "apollo-env": "^0.5.1",
     "apollo-link-http": "^1.5.14",
-    "cross-fetch": "^3.0.4",
+    "cross-fetch": "^3.1.5",
     "express": "^4.17.1",
     "graphql": "^14.3.1",
     "isomorphic-unfetch": "^3.0.0",
