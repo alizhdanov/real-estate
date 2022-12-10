@@ -14,7 +14,7 @@
     "apollo-env": "^0.5.1",
     "apollo-link-http": "^1.5.14",
     "cross-fetch": "^3.0.4",
-    "express": "^4.17.1",
+    "express": "^4.17.3",
     "graphql": "^14.3.1",
     "isomorphic-unfetch": "^3.0.0",
     "next": "^9.0.0",
