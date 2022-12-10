@@ -20,7 +20,7 @@
     "conditional-elements": "^0.0.1",
     "dataloader": "^1.4.0",
     "dotenv": "^8.0.0",
-    "express": "^4.16.4",
+    "express": "^4.17.3",
     "graphql": "^14.4.2",
     "graphql-yoga": "^1.18.1",
     "knex": "^0.19.1",
